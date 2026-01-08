@@ -53,6 +53,11 @@ LogLLM/
 │   └── evaluate.py       # Evaluation and visualization
 ├── inference/
 │   └── classify_log.py   # CLI inference interface
+├── web_demo/             # Web interface (FastAPI)
+│   ├── app.py           # Local development server
+│   ├── app_hf.py        # Hugging Face Spaces version
+│   ├── requirements.txt # Web dependencies
+│   └── DEPLOYMENT.md    # Deployment guide
 ├── models/               # Saved models and checkpoints
 ├── requirements.txt      # Python dependencies
 └── README.md            # This file
@@ -140,6 +145,50 @@ Confidence: 0.9234 (92.34%)
 | "Connection timeout after 30s" | ERROR | 98.2% |
 | "API response time: 245ms" | WARNING | 87.5% |
 | "User logged in successfully" | INFO | 99.1% |
+
+## 🌐 Web Demo
+
+A beautiful web interface is available for interactive log classification!
+
+### Local Development
+
+```bash
+cd web_demo
+pip install -r requirements.txt
+python app.py
+```
+
+Then open http://localhost:7860 in your browser.
+
+### Deploy to Hugging Face Spaces (Free)
+
+1. Upload your model to Hugging Face Hub:
+   ```bash
+   huggingface-cli upload YOUR_USERNAME/logllm models/logllm/
+   ```
+
+2. Create a new Space at https://huggingface.co/new-space
+   - Choose **FastAPI** as the SDK
+   - Name it (e.g., `logllm-demo`)
+
+3. Copy files and push:
+   ```bash
+   git clone https://huggingface.co/spaces/YOUR_USERNAME/logllm-demo
+   cd logllm-demo
+   cp ../web_demo/app_hf.py app.py
+   cp ../web_demo/requirements.txt .
+   # Update HF_MODEL_PATH in app.py
+   git add . && git commit -m "Add LogLLM demo" && git push
+   ```
+
+See `web_demo/DEPLOYMENT.md` for detailed deployment instructions.
+
+**Features:**
+- ✨ Beautiful, modern UI with gradient design
+- 🚀 Real-time classification
+- 📊 Confidence scores
+- 🎯 Example log messages
+- 📱 Responsive design
 
 ## 📈 Training Details
 
