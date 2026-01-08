@@ -133,6 +133,14 @@ Confidence: 0.9234 (92.34%)
 ============================================================
 ```
 
+## Example Predictions
+
+| Log Message | Predicted | Confidence |
+|-------------|-----------|------------|
+| "Connection timeout after 30s" | ERROR | 98.2% |
+| "API response time: 245ms" | WARNING | 87.5% |
+| "User logged in successfully" | INFO | 99.1% |
+
 ## 📈 Training Details
 
 ### Hyperparameters
